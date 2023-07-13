@@ -5,14 +5,14 @@ import Chatbot from './pages/Chatbot';
 
 
 function App() {
-    return (
-        <div className="App">
-            <Routes>
-                <Route path="/chatbot" element={<Chatbot />} />
-                <Route path="*" element={<p>Path not resolved</p>} />
-            </Routes>
-        </div>
-    );
+  return (
+    <div className="App">
+      <Routes>
+        <Route path="/chatbot" element={<Chatbot />} />
+        <Route path="*" element={<p>Path not resolved</p>} />
+      </Routes>
+    </div>
+  );
 }
 
 export default App;

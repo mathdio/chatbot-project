@@ -1,0 +1,9 @@
+@media screen and ( min-width : 360px ) and ( max-width : 800px ) {
+
+  .header-container {
+    background: linear-gradient(rgb(54, 161, 110), rgb(45, 161, 143));
+    height: 50px;
+    position: fixed;
+    width: 100%;
+  }
+}
