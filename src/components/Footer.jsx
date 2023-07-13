@@ -18,12 +18,11 @@ function Footer({chat, setChat}) {
     const response = {
       user: 'customer',
       message: inputText.trim(),
-      words: inputText.split(' ')
+      words: inputText.toLowerCase().split(' ')
     };
     const newChat = [...chat, response];
     setChat(newChat);
     setInputText('');
-    console.log('clicou');
   };
 
   const handleKeyDown = (key) => {

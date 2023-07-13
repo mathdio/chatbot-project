@@ -3,6 +3,7 @@ import styles from '../styles/Chatbot.module.css';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import loadingIcon from '../images/loading-icon.jpg';
+import LoanOptions from '../components/LoanOptions';
 
 const startTriggers = ['Hello,', 'Goodbye,', 'Good,', 'I want'];
 
@@ -14,10 +15,11 @@ function Chatbot() {
   const [username, setUsername] = useState('');
   const [sentPassword, setSentPassword] = useState(false);
   const [password, setPassword] = useState('');
+  const [enableLoan, setEnableLoan] = useState(false);
 
   const handleStart = () => {
     const lastResponse = chat[chat.length - 1];
-    const hasTrigger = startTriggers.some((trigger) => lastResponse.words[0] === trigger);
+    const hasTrigger = startTriggers.some((trigger) => lastResponse.message.startsWith(trigger));
     if (hasTrigger) {
       setStarted(true);
       const response = {
@@ -46,10 +48,29 @@ function Chatbot() {
     if (lastResponse.user === 'customer') {
       setPassword(lastResponse.message);
       setSentPassword(true);
+      const response = {
+        user: 'bot',
+        message: 'All right! How can we help you?',
+      };
+      setChat([...chat, response]);
+    }
+  };
+
+  const handleLoanOptions = () => {
+    const lastResponse = chat[chat.length - 1];
+    if (lastResponse.user === 'customer') {
+      const hasLoanTerm = lastResponse.words.some((word) => word.startsWith('loan'));
+      if (hasLoanTerm) {
+        setEnableLoan(true);
+        const response = {
+          user: 'bot',
+          message: 'Are you seeking some info about loans? Here some options that can help you.',
+        };
+        setChat([...chat, response]);
+      }
     }
   };
   
-
   const ref = useRef(null);
 
   useEffect(() => {
@@ -65,8 +86,13 @@ function Chatbot() {
       setLoading(true);
       handlePassword();
       setLoading(false);
+    } else if (sentPassword) {
+      setLoading(true);
+      handleLoanOptions();
+      setLoading(false);
     }
 
+    console.log('teste');
     ref.current?.scrollIntoView({behavior: 'smooth'});
   }, [chat]);
 
@@ -82,8 +108,9 @@ function Chatbot() {
         {loading && (
           <img className={styles['loading-icon']} src={loadingIcon} />
         )}
-        <hr ref={ref} />
+        {enableLoan && <LoanOptions />}
       </div>
+      <hr ref={ref} />
       <Footer chat={chat} setChat={setChat}/>
     </div>
   );
