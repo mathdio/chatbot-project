@@ -4,14 +4,68 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import loadingIcon from '../images/loading-icon.jpg';
 
+const startTriggers = ['Hello,', 'Goodbye,', 'Good,', 'I want'];
+
 function Chatbot() {
   const [loading, setLoading] = useState(false);
   const [chat, setChat] = useState([]);
+  const [started, setStarted] = useState(false);
+  const [sentUser, setSentUser] = useState(false);
+  const [username, setUsername] = useState('');
+  const [sentPassword, setSentPassword] = useState(false);
+  const [password, setPassword] = useState('');
+
+  const handleStart = () => {
+    const lastResponse = chat[chat.length - 1];
+    const hasTrigger = startTriggers.some((trigger) => lastResponse.words[0] === trigger);
+    if (hasTrigger) {
+      setStarted(true);
+      const response = {
+        user: 'bot',
+        message: 'Send your username to continue',
+      };
+      setChat([...chat, response]);
+    }
+  };
+
+  const handleUser = () => {
+    const lastResponse = chat[chat.length - 1];
+    if (lastResponse.user === 'customer') {
+      setUsername(lastResponse.message);
+      setSentUser(true);
+      const response = {
+        user: 'bot',
+        message: 'Now send your password',
+      };
+      setChat([...chat, response]);
+    }
+  };
+
+  const handlePassword = () => {
+    const lastResponse = chat[chat.length - 1];
+    if (lastResponse.user === 'customer') {
+      setPassword(lastResponse.message);
+      setSentPassword(true);
+    }
+  };
+  
 
   const ref = useRef(null);
 
   useEffect(() => {
-    if (chat.length > 0) setLoading(true);
+    if (chat.length > 0 && !started) {
+      setLoading(true);
+      handleStart();
+      setLoading(false);
+    } else if (started && !sentUser) {
+      setLoading(true);
+      handleUser();
+      setLoading(false);
+    } else if (sentUser && !sentPassword) {
+      setLoading(true);
+      handlePassword();
+      setLoading(false);
+    }
 
     ref.current?.scrollIntoView({behavior: 'smooth'});
   }, [chat]);

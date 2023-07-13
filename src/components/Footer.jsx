@@ -18,7 +18,7 @@ function Footer({chat, setChat}) {
     const response = {
       user: 'customer',
       message: inputText.trim(),
-      words: inputText.toLowerCase().split(' ')
+      words: inputText.split(' ')
     };
     const newChat = [...chat, response];
     setChat(newChat);
