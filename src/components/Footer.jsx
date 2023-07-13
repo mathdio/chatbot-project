@@ -1,10 +1,28 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import styles from '../styles/Footer.module.css';
 
-function Footer() {
+function Footer({chat, setChat}) {
   const [inputText, setInputText] = useState('');
+  const [disabledBtn, setDisabledBtn] = useState(true);
+
+  useEffect(() => {
+    if (inputText.trim().length > 0) {
+      setDisabledBtn(false);
+    } else {
+      setDisabledBtn(true);
+    }
+  }, [inputText]);
 
   const handleClick = () => {
+    const response = {
+      user: 'customer',
+      message: inputText.trim(),
+      words: inputText.toLowerCase().split(' ')
+    };
+    const newChat = [...chat, response];
+    setChat(newChat);
+    setInputText('');
     console.log('clicou');
   };
 
@@ -25,11 +43,17 @@ function Footer() {
       <button
         type='button'
         onClick={handleClick}
+        disabled={disabledBtn}
       >
         send
       </button>
     </footer>
   );
 }
+
+Footer.propTypes = {
+  chat: PropTypes.array,
+  setChat: PropTypes.func,
+}.isRequired;
 
 export default Footer;
