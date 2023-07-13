@@ -1,0 +1,9 @@
+@media screen and ( min-width : 360px ) and ( max-width : 800px ) {
+
+  .main-container {
+    background-color: rgb(62, 60, 60);
+    height: 100vh;
+    width: 100vw;
+  }
+}
+
