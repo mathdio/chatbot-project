@@ -5,7 +5,7 @@ import Footer from '../components/Footer';
 import loadingIcon from '../images/loading-icon.jpg';
 import LoanOptions from '../components/LoanOptions';
 
-const startTriggers = ['Hello,', 'Goodbye,', 'Good,', 'I want'];
+const startTriggers = ['Hello,', 'Good,', 'I want'];
 
 function Chatbot() {
   const [loading, setLoading] = useState(false);
@@ -19,7 +19,7 @@ function Chatbot() {
 
   const handleStart = () => {
     const lastResponse = chat[chat.length - 1];
-    const hasTrigger = startTriggers.some((trigger) => lastResponse.message.startsWith(trigger));
+    const hasTrigger = startTriggers.some((trigger) => lastResponse.message.toLowerCase().includes(trigger.toLowerCase()));
     if (hasTrigger) {
       setStarted(true);
       const response = {
@@ -53,13 +53,15 @@ function Chatbot() {
         message: 'All right! How can we help you?',
       };
       setChat([...chat, response]);
+
+      
     }
   };
 
   const handleLoanOptions = () => {
     const lastResponse = chat[chat.length - 1];
     if (lastResponse.user === 'customer') {
-      const hasLoanTerm = lastResponse.words.some((word) => word.startsWith('loan'));
+      const hasLoanTerm = lastResponse.message.toLowerCase().includes('loan');
       if (hasLoanTerm) {
         setEnableLoan(true);
         const response = {
@@ -92,9 +94,20 @@ function Chatbot() {
       setLoading(false);
     }
 
-    console.log('teste');
     ref.current?.scrollIntoView({behavior: 'smooth'});
   }, [chat]);
+
+  useEffect(() => {
+    const localStorageUser = {
+      username,
+      password,
+    };
+    localStorage.setItem('user', JSON.stringify(localStorageUser));
+  }, [password]);
+
+  useEffect(() => {
+    localStorage.clear();
+  }, []);
 
   return (
     <div className={styles['main-container']}>
