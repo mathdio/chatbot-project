@@ -113,18 +113,31 @@ function Chatbot() {
     <div className={styles['main-container']}>
       <Header />
       <div className={styles['chat-container']}>
-        {chat.map(({message, user}, index) => (
-          <p key={index} className={styles[user]}>
-            {message}
-          </p>
-        ))}
+        {chat.map((response, index) => {
+          if (response.link) {
+            return (
+              <p key={index} className={styles[response.user]}>
+                {response.info}
+                <a href={response.link} >
+                  {response.message.toUpperCase()}
+                </a>
+              </p>
+            );
+          } else {
+            return (
+              <p key={index} className={styles[response.user]}>
+                {response.message}
+              </p>
+            );
+          }
+        })}
         {loading && (
           <img className={styles['loading-icon']} src={loadingIcon} />
         )}
-        {enableLoan && <LoanOptions />}
+        {enableLoan && <LoanOptions chat={chat} setChat={setChat} setEnableLoan={setEnableLoan} />}
       </div>
       <hr ref={ref} />
-      <Footer chat={chat} setChat={setChat}/>
+      <Footer chat={chat} setChat={setChat} />
     </div>
   );
 }

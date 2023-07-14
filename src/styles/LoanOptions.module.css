@@ -2,7 +2,7 @@
 
   .loan-section {
     align-items: center;
-    background-color: blueviolet;
+    background-color: rgb(35, 160, 179);
     border-radius: 15px 15px 3px;
     display: flex;
     flex-direction: column;
@@ -21,7 +21,7 @@
 
   .loan-section div {
     align-items: center;
-    background-color: rgb(171, 107, 232);
+    background-color: rgb(90, 183, 197);
     border-radius: 5px;
     color: white;
     display: flex;
