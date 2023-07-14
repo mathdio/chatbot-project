@@ -1,7 +1,7 @@
 version: '3.9'
 services:
   frontend:
-    build: .
+    build: ./app/frontend
     container_name: chatbot-frontend
     ports:
       - 3000:3000
@@ -11,3 +11,26 @@ services:
       test: ["CMD", "lsof", "-t", "-i:3000"]
       timeout: 10s
       retries: 5
+  
+  backend:
+    build: ./app/backend
+    container_name: chatbot-backend
+    tty: true
+    stdin_open: true
+    command: sh
+    volumes:
+      - ./:/app/backend
+    ports:
+      - 3001:3001
+    env_file:
+      - .env
+    depends_on:
+      - db
+
+  db:
+    image: mysql:8.0.32
+    container_name: chatbot-db
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+    ports:
+      - 33060:3306

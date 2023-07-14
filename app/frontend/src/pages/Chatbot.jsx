@@ -17,6 +17,26 @@ function Chatbot() {
   const [password, setPassword] = useState('');
   const [enableLoan, setEnableLoan] = useState(false);
 
+  const convertCsv = () => {
+    const heading = ['user', 'message'];
+    const convertInRows = chat.map((response) => {
+      if (response.link) {
+        return [response.user, `${response.message} ${response.info} ${response.link}`]
+      } else {
+        return [response.user, response.message]
+      }
+    })
+
+    convertInRows.splice(0,0, heading);
+    let csvContent = "data:text/csv;charset=utf-8,";
+    convertInRows.forEach((rowArray) => {
+      const row = rowArray.join(",")
+      csvContent += row + '\r\n'
+    })
+
+    console.log(csvContent);
+  }
+
   const handleStart = () => {
     const lastResponse = chat[chat.length - 1];
     const hasTrigger = startTriggers.some((trigger) => lastResponse.message.toLowerCase().includes(trigger.toLowerCase()));
@@ -72,6 +92,16 @@ function Chatbot() {
       }
     }
   };
+
+  const handleGoodbye = () => {
+    const lastResponse = chat[chat.length - 1];
+    if (lastResponse.user === 'customer') {
+      const hasGoodbyeTerm = lastResponse.message.toLowerCase().includes('goodbye');
+      if (hasGoodbyeTerm) {
+        convertCsv();
+      }
+    }
+  }
   
   const ref = useRef(null);
 
@@ -91,6 +121,7 @@ function Chatbot() {
     } else if (sentPassword) {
       setLoading(true);
       handleLoanOptions();
+      handleGoodbye();
       setLoading(false);
     }
 
@@ -132,7 +163,7 @@ function Chatbot() {
           }
         })}
         {loading && (
-          <img className={styles['loading-icon']} src={loadingIcon} />
+          <img className={styles['loading-icon']} src={loadingIcon} alt="" />
         )}
         {enableLoan && <LoanOptions chat={chat} setChat={setChat} setEnableLoan={setEnableLoan} />}
       </div>
