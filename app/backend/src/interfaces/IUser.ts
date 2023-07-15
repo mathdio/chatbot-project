@@ -1,8 +1,8 @@
 interface IUser {
   id?: number;
+  name: string;
   username: string;
   password: string;
-  url: string;
 }
 
 export default IUser
