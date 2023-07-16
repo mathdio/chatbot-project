@@ -1,9 +1,9 @@
-const fetchUsername = async (username, setUsername) => {
+const fetchUsername = async (username, password, setName) => {
   const response = await fetch(
     `http://localhost:3001/users/fetch-username`,
     {
       method: 'POST',
-      body: JSON.stringify({username}),
+      body: JSON.stringify({username, password}),
       headers: {
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*',
@@ -13,11 +13,12 @@ const fetchUsername = async (username, setUsername) => {
     },
   );
   
-  if (response.status === 404) return -1
-  
-  const data = await response.json();
-  setUsername(data.name)
-  return null
+  if (response.status === 404) {
+    setName(null)
+  } else {
+    const data = await response.json();
+    setName(data.name)
+  }
 } 
 
 export default fetchUsername;

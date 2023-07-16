@@ -25,11 +25,12 @@ export default class UserModel {
 		return result[0] as IUser;
 	}
 
-	async findByUser(username: string): Promise<IUser | null> {
+	async findByUser(username: string, password: string): Promise<IUser | null> {
 		const [result] = await this.connection.execute<RowDataPacket[]>(
 			`SELECT name FROM chatbot.Users
-			WHERE username = ?`,
-			[username]
+			WHERE username = ?
+			AND password = ?`,
+			[username, password]
 		);
 		return result[0] as IUser;
 	}

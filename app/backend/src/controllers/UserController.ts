@@ -26,11 +26,11 @@ async function find(req: Request, res: Response, next: NextFunction) {
 }
 
 async function findByUser(req: Request, res: Response, next: NextFunction) {
-  const { username } = req.body;
+  const { username, password } = req.body;
   const userService = new UserService();
 
   try {
-    const user = await userService.findByUser(username);
+    const user = await userService.findByUser(username, password);
     if (!user) return res.status(404).end();
     return res.status(200).json(user)
   } catch (err) {

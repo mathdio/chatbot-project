@@ -17,6 +17,7 @@ function Chatbot() {
   const [sentPassword, setSentPassword] = useState(false);
   const [password, setPassword] = useState('');
   const [enableLoan, setEnableLoan] = useState(false);
+  const [name, setName] = useState('');
 
   const convertCsv = () => {
     const heading = ['user', 'message'];
@@ -54,40 +55,38 @@ function Chatbot() {
   const handleUser = async () => {
     const lastResponse = chat[chat.length - 1];
     if (lastResponse.user === 'customer') {
-      const response = await fetchUsername(lastResponse.message, setUsername);
-      if (response === -1) {
-        const response = {
-          user: 'bot',
-          message: `Username not found! Try again!`,
-        };
-        setChat([...chat, response])
-      }
+      setUsername(lastResponse.message);
+      setSentUser(true);
+      const response = {
+        user: 'bot',
+        message: `Now send your password`,
+      };
+      setChat([...chat, response]);
     }
   };
 
   useEffect(() => {
-    if (username.length > 0) {
-      setSentUser(true);
+    if (name && name.length > 0) {
+      setSentPassword(true)
       const response = {
         user: 'bot',
-        message: `Hi, ${username}! Now send your password`,
+        message: `All right, ${name}! How can we help you?`,
+      };
+      setChat([...chat, response]);
+    } else if (name === null) {
+      setSentUser(false);
+      const response = {
+        user: 'bot',
+        message: `Username or passwords invalids. Try again.`,
       };
       setChat([...chat, response]);
     }
-  }, [username]);
+  }, [name]);
 
   const handlePassword = () => {
     const lastResponse = chat[chat.length - 1];
     if (lastResponse.user === 'customer') {
-      setPassword(lastResponse.message);
-      setSentPassword(true);
-      const response = {
-        user: 'bot',
-        message: 'All right! How can we help you?',
-      };
-      setChat([...chat, response]);
-
-      
+      fetchUsername(username, lastResponse.message, setName);
     }
   };
 

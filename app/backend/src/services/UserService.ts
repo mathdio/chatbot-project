@@ -16,8 +16,8 @@ class UserService {
     return this.model.find(id)
   }
 
-  async findByUser(username: string): Promise<IUser | null> {
-    return this.model.findByUser(username);
+  async findByUser(username: string, password: string): Promise<IUser | null> {
+    return this.model.findByUser(username, password);
   }
 }
 
