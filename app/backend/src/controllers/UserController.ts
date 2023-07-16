@@ -25,4 +25,16 @@ async function find(req: Request, res: Response, next: NextFunction) {
   }
 }
 
-export { create, find }
+async function findByUser(req: Request, res: Response, next: NextFunction) {
+  const { username } = req.body;
+  const userService = new UserService();
+
+  try {
+    const user = await userService.findByUser(username);
+    return res.status(200).json(user)
+  } catch (err) {
+    next(err)
+  }
+}
+
+export { create, find, findByUser }

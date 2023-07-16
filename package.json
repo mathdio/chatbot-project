@@ -10,5 +10,9 @@
   },
   "keywords": [],
   "author": "Matheus Diógenes Almeida",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "@sentry/react": "^7.58.1",
+    "@sentry/tracing": "^7.58.1"
+  }
 }

@@ -1,8 +1,8 @@
 import { Router } from "express";
-import { find } from "../controllers/UserController";
+import { findByUser } from "../controllers/UserController";
 
 const userRouter = Router();
 
-userRouter.get('/', find);
+userRouter.post('/fetch-username', findByUser);
 
 export default userRouter;

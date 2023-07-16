@@ -4,6 +4,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import loadingIcon from '../images/loading-icon.jpg';
 import LoanOptions from '../components/LoanOptions';
+import fetchUsername from '../utils/fetchUsername';
 
 const startTriggers = ['Hello,', 'Good,', 'I want'];
 
@@ -50,18 +51,23 @@ function Chatbot() {
     }
   };
 
-  const handleUser = () => {
+  const handleUser = async () => {
     const lastResponse = chat[chat.length - 1];
     if (lastResponse.user === 'customer') {
-      setUsername(lastResponse.message);
+      await fetchUsername(lastResponse.message, setUsername);
+    }
+  };
+
+  useEffect(() => {
+    if (username.length > 0) {
       setSentUser(true);
       const response = {
         user: 'bot',
-        message: 'Now send your password',
+        message: `Hi, ${username}! Now send your password`,
       };
       setChat([...chat, response]);
     }
-  };
+  }, [username]);
 
   const handlePassword = () => {
     const lastResponse = chat[chat.length - 1];

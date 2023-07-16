@@ -24,4 +24,13 @@ export default class UserModel {
 		[id]);
 		return result[0] as IUser;
 	}
+
+	async findByUser(username: string): Promise<IUser | null> {
+		const [result] = await this.connection.execute<RowDataPacket[]>(
+			`SELECT name FROM chatbot.Users
+			WHERE username = ?`,
+			[username]
+		);
+		return result[0] as IUser;
+	}
 }

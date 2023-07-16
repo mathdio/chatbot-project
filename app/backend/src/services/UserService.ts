@@ -15,6 +15,10 @@ class UserService {
   async find(id: number): Promise<IUser | null> {
     return this.model.find(id)
   }
+
+  async findByUser(username: string): Promise<IUser | null> {
+    return this.model.findByUser(username);
+  }
 }
 
 export default UserService;
