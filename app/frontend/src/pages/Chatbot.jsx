@@ -54,7 +54,14 @@ function Chatbot() {
   const handleUser = async () => {
     const lastResponse = chat[chat.length - 1];
     if (lastResponse.user === 'customer') {
-      await fetchUsername(lastResponse.message, setUsername);
+      const response = await fetchUsername(lastResponse.message, setUsername);
+      if (response === -1) {
+        const response = {
+          user: 'bot',
+          message: `Username not found! Try again!`,
+        };
+        setChat([...chat, response])
+      }
     }
   };
 

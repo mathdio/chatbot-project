@@ -12,9 +12,12 @@ const fetchUsername = async (username, setUsername) => {
       }
     },
   );
-
+  
+  if (response.status === 404) return -1
+  
   const data = await response.json();
   setUsername(data.name)
+  return null
 } 
 
 export default fetchUsername;

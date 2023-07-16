@@ -31,6 +31,7 @@ async function findByUser(req: Request, res: Response, next: NextFunction) {
 
   try {
     const user = await userService.findByUser(username);
+    if (!user) return res.status(404).end();
     return res.status(200).json(user)
   } catch (err) {
     next(err)
