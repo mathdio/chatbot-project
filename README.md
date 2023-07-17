@@ -55,3 +55,9 @@ Start the server by running:
 ```
 npm run dev
 ```
+With back-end running, you can access the application in a web browser throught the following URL:
+```
+http://localhost:3000/chatbot
+```
+
+You can alternatively stop front-end and back-end containers and starting each layer by installing the dependencies with `npm install` command in project root, front-end directory and back-end directory. Run the command `npm start` to start the front-end and run `npm run dev` to start the back-end. 
