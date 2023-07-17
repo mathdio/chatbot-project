@@ -15,7 +15,6 @@ function Chatbot() {
   const [sentUser, setSentUser] = useState(false);
   const [username, setUsername] = useState('');
   const [sentPassword, setSentPassword] = useState(false);
-  const [password, setPassword] = useState('');
   const [enableLoan, setEnableLoan] = useState(false);
   const [name, setName] = useState('');
   const [id, setId] = useState('');

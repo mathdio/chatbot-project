@@ -37,11 +37,13 @@ function Footer({chat, setChat}) {
         value={inputText}
         onChange={ ({target}) => setInputText(target.value) }
         onKeyDown={(event) => handleKeyDown(event.key) }
+        className={styles["input"]}
       />
       <button
         type='button'
         onClick={handleClick}
         disabled={disabledBtn}
+        className={styles["button"]}
       >
         send
       </button>

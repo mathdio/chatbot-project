@@ -12,13 +12,17 @@ function Header({headerLink, pageName}) {
 
   return (
     <header className={styles['header-container']}>
-      <p>{pageName}</p>
-      <Link to={`/${headerLink.toLowerCase()}`} >
+      <p className={styles["title"]}>
+        <img href="" className={styles["img"]} />
+        {pageName}
+      </p>
+      <Link to={`/${headerLink.toLowerCase()}`} className={styles["history"]} >
         {headerLink}
       </Link>
       <button
         type="button"
         onClick={handleLogout}
+        className={styles["logout-btn"]}
       >
         Logout
       </button>

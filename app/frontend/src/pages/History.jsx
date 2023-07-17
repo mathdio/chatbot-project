@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Header from "../components/Header";
 import { useNavigate } from 'react-router-dom';
 import fetchConversations from "../utils/fetchConversations";
+import styles from '../styles/History.module.css';
 
 function History() {
   const [user, setUser] = useState(null);
@@ -23,12 +24,11 @@ function History() {
   }, []);
 
   return (
-    <div>
+    <div className={styles["main-container"]}>
       <Header headerLink='Chatbot' pageName='History'/>
-      <div>
-        <table>
+        <table className={styles["table"]}>
           <thead>
-            <tr>
+            <tr className={styles["thead-tr"]}>
               <th>Conversation</th>
               <th>Date</th>
               <th>Download</th>
@@ -39,7 +39,7 @@ function History() {
                 const convertedDate = date.split("T")[0].split("-").reverse().join("/")
                 const time = date.split("T")[1].split(".")[0]
                 return (
-                <tr key={index}>
+                <tr key={index} className={styles['tbody-tr']}>
                   <td>
                     {`Conversation ${user.name} #${index + 1}`}
                   </td>
@@ -54,7 +54,6 @@ function History() {
                 </tr>)})}
             </tbody>
         </table>
-      </div>
     </div>
   )
 }
