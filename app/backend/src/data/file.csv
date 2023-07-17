@@ -1,8 +1,0 @@
-data:text/csv;charset=utf-8,user,message
-customer,good,
-bot,Send your username to continue
-customer,joaosilva
-bot,Now send your password
-customer,123456
-bot,All right, João Silva! How can we help you?
-customer,goodbye

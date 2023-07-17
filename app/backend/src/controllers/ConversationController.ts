@@ -8,8 +8,21 @@ async function create(req: Request, res: Response, next: NextFunction) {
 
 
   try {
-    await fs.writeFile('src/data/file.csv', csvContent);
-    return res.status(200).end;
+    const conversations = await conversationService.findAll();
+    let fileName;
+    if (conversations) {
+      fileName = `src/data/conversation-id-${conversations.length}.csv`
+      await fs.writeFile(fileName, csvContent);
+      const conversation = {
+        user_id: id,
+        date,
+        url: fileName,
+      }
+
+      await conversationService.create(conversation);
+      return res.status(201).end;
+    }
+
   } catch (err) {
     console.log(err);
   }

@@ -12,7 +12,7 @@ CREATE TABLE `Conversations` (
     `id` int NOT NULL AUTO_INCREMENT,
     `user_id` int NOT NULL,
     `url` varchar(255) NOT NULL,
-    `date` DATE,
+    `date` DATETIME,
     PRIMARY KEY (`id`),
     FOREIGN KEY (`user_id`) REFERENCES `Users` (`id`)
 );

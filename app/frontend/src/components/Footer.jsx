@@ -18,7 +18,7 @@ function Footer({chat, setChat}) {
     const response = {
       user: 'customer',
       message: inputText.trim(),
-      date: new Date(),
+      date: new Date().toISOString().slice(0, 19).replace('T', ' '),
     };
     setChat([...chat, response]);
     setInputText('');

@@ -21,12 +21,12 @@ function Chatbot() {
   const [id, setId] = useState('');
 
   const convertCsv = async () => {
-    const heading = ['user', 'message'];
+    const heading = ['user', 'message', 'date'];
     const convertInRows = chat.map((response) => {
       if (response.link) {
-        return [response.user, `${response.message} ${response.info} ${response.link}`]
+        return [response.user, `${response.message} ${response.info} ${response.link}`, response.date]
       } else {
-        return [response.user, response.message]
+        return [response.user, response.message, response.date]
       }
     })
 
@@ -40,7 +40,7 @@ function Chatbot() {
     const date = chat[chat.length - 1].date;
 
     console.log(csvContent);
-    
+
     const response = await fetch(
       `http://localhost:3001/conversations/`,
       {

@@ -11,6 +11,11 @@ class ConversationService {
   async create(conversation: IConversation): Promise<void> {
     await this.model.create(conversation);
   }
+  
+  async findAll(): Promise<IConversation[] | null> {
+    const conversations = await this.model.findAll();
+    return conversations 
+  }
 }
 
 export default ConversationService;
