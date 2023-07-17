@@ -2,6 +2,7 @@ import express from 'express';
 require('express-async-errors');
 import errorHandler from './middlewares/ErrorHandler';
 import userRouter from './routes/UserRouter';
+import conversationRouter from './routes/ConversationRouter';
 
 const cors = require('cors');
 
@@ -12,6 +13,7 @@ app.use(cors());
 
 app.get('/health', (_req, res) => res.status(200).send({ message: 'API is up!' }));
 app.use('/users', userRouter);
+app.use('/conversations', conversationRouter);
 
 app.use(errorHandler);
 

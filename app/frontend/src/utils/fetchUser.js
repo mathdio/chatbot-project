@@ -1,4 +1,4 @@
-const fetchUsername = async (username, password, setName) => {
+const fetchUser = async (username, password, setName, setId) => {
   const response = await fetch(
     `http://localhost:3001/users/fetch-username`,
     {
@@ -18,7 +18,8 @@ const fetchUsername = async (username, password, setName) => {
   } else {
     const data = await response.json();
     setName(data.name)
+    setId(data.id)
   }
 } 
 
-export default fetchUsername;
+export default fetchUser;

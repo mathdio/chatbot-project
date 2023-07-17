@@ -4,7 +4,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import loadingIcon from '../images/loading-icon.jpg';
 import LoanOptions from '../components/LoanOptions';
-import fetchUsername from '../utils/fetchUsername';
+import fetchUser from '../utils/fetchUser';
 
 const startTriggers = ['Hello,', 'Good,', 'I want'];
 
@@ -18,8 +18,9 @@ function Chatbot() {
   const [password, setPassword] = useState('');
   const [enableLoan, setEnableLoan] = useState(false);
   const [name, setName] = useState('');
+  const [id, setId] = useState('');
 
-  const convertCsv = () => {
+  const convertCsv = async () => {
     const heading = ['user', 'message'];
     const convertInRows = chat.map((response) => {
       if (response.link) {
@@ -34,9 +35,25 @@ function Chatbot() {
     convertInRows.forEach((rowArray) => {
       const row = rowArray.join(",")
       csvContent += row + '\r\n'
-    })
+    });
+
+    const date = chat[chat.length - 1].date;
 
     console.log(csvContent);
+    
+    const response = await fetch(
+      `http://localhost:3001/conversations/`,
+      {
+        method: 'POST',
+        body: JSON.stringify({csvContent, id, date}),
+        headers: {
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+          'Access-Control-Allow-Methods': 'POST, PUT, PATCH, GET, DELETE, OPTIONS',
+        }
+      },
+    );
   }
 
   const handleStart = () => {
@@ -47,6 +64,7 @@ function Chatbot() {
       const response = {
         user: 'bot',
         message: 'Send your username to continue',
+        date: new Date(),
       };
       setChat([...chat, response]);
     }
@@ -60,6 +78,8 @@ function Chatbot() {
       const response = {
         user: 'bot',
         message: `Now send your password`,
+        date: new Date(),
+
       };
       setChat([...chat, response]);
     }
@@ -71,6 +91,7 @@ function Chatbot() {
       const response = {
         user: 'bot',
         message: `All right, ${name}! How can we help you?`,
+        date: new Date(),
       };
       setChat([...chat, response]);
     } else if (name === null) {
@@ -78,6 +99,7 @@ function Chatbot() {
       const response = {
         user: 'bot',
         message: `Username or passwords invalids. Try again.`,
+        date: new Date(),
       };
       setChat([...chat, response]);
     }
@@ -86,7 +108,7 @@ function Chatbot() {
   const handlePassword = () => {
     const lastResponse = chat[chat.length - 1];
     if (lastResponse.user === 'customer') {
-      fetchUsername(username, lastResponse.message, setName);
+      fetchUser(username, lastResponse.message, setName, setId);
     }
   };
 
@@ -99,6 +121,7 @@ function Chatbot() {
         const response = {
           user: 'bot',
           message: 'Are you seeking some info about loans? Here some options that can help you.',
+          date: new Date(),
         };
         setChat([...chat, response]);
       }
@@ -139,18 +162,6 @@ function Chatbot() {
 
     ref.current?.scrollIntoView({behavior: 'smooth'});
   }, [chat]);
-
-  useEffect(() => {
-    const localStorageUser = {
-      username,
-      password,
-    };
-    localStorage.setItem('user', JSON.stringify(localStorageUser));
-  }, [password]);
-
-  useEffect(() => {
-    localStorage.clear();
-  }, []);
 
   return (
     <div className={styles['main-container']}>

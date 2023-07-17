@@ -27,7 +27,7 @@ export default class UserModel {
 
 	async findByUser(username: string, password: string): Promise<IUser | null> {
 		const [result] = await this.connection.execute<RowDataPacket[]>(
-			`SELECT name FROM chatbot.Users
+			`SELECT name, id FROM chatbot.Users
 			WHERE username = ?
 			AND password = ?`,
 			[username, password]
