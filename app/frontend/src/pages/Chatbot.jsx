@@ -165,7 +165,7 @@ function Chatbot() {
 
   return (
     <div className={styles['main-container']}>
-      <Header />
+      <Header headerLink='History' pageName='Chatbot' />
       <div className={styles['chat-container']}>
         {chat.map((response, index) => {
           if (response.link) {
