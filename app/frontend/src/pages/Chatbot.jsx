@@ -39,9 +39,7 @@ function Chatbot() {
 
     const date = chat[chat.length - 1].date;
 
-    console.log(csvContent);
-
-    const response = await fetch(
+    await fetch(
       `http://localhost:3001/conversations/`,
       {
         method: 'POST',
@@ -64,7 +62,7 @@ function Chatbot() {
       const response = {
         user: 'bot',
         message: 'Send your username to continue',
-        date: new Date(),
+        date: new Date().toISOString().slice(0, 19).replace('T', ' '),
       };
       setChat([...chat, response]);
     }
@@ -78,8 +76,7 @@ function Chatbot() {
       const response = {
         user: 'bot',
         message: `Now send your password`,
-        date: new Date(),
-
+        date: new Date().toISOString().slice(0, 19).replace('T', ' '),
       };
       setChat([...chat, response]);
     }
@@ -87,11 +84,12 @@ function Chatbot() {
 
   useEffect(() => {
     if (name && name.length > 0) {
+      localStorage.setItem('user', JSON.stringify({id, name}))
       setSentPassword(true)
       const response = {
         user: 'bot',
         message: `All right, ${name}! How can we help you?`,
-        date: new Date(),
+        date: new Date().toISOString().slice(0, 19).replace('T', ' '),
       };
       setChat([...chat, response]);
     } else if (name === null) {
@@ -99,7 +97,7 @@ function Chatbot() {
       const response = {
         user: 'bot',
         message: `Username or passwords invalids. Try again.`,
-        date: new Date(),
+        date: new Date().toISOString().slice(0, 19).replace('T', ' '),
       };
       setChat([...chat, response]);
     }
@@ -121,7 +119,7 @@ function Chatbot() {
         const response = {
           user: 'bot',
           message: 'Are you seeking some info about loans? Here some options that can help you.',
-          date: new Date(),
+          date: new Date().toISOString().slice(0, 19).replace('T', ' '),
         };
         setChat([...chat, response]);
       }

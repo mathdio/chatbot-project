@@ -1,8 +1,0 @@
-data:text/csv;charset=utf-8,user,message,date
-customer,good,,2023-07-17 16:41:05
-bot,Send your username to continue,Mon Jul 17 2023 13:41:05 GMT-0300 (Brasilia Standard Time)
-customer,joaosilva,2023-07-17 16:41:06
-bot,Now send your password,Mon Jul 17 2023 13:41:06 GMT-0300 (Brasilia Standard Time)
-customer,123456,2023-07-17 16:41:09
-bot,All right, João Silva! How can we help you?,Mon Jul 17 2023 13:41:09 GMT-0300 (Brasilia Standard Time)
-customer,goodbye,2023-07-17 16:41:11

@@ -16,6 +16,22 @@ class ConversationModel {
     const [result] = await this.connection.execute<RowDataPacket[]>('SELECT * FROM chatbot.Conversations');
     return result as IConversation[]
   }
+
+  async findById(id: number): Promise<IConversation[] | null> {
+    const [result] = await this.connection.execute<RowDataPacket[]>(
+      `SELECT url, date FROM chatbot.Conversations
+      WHERE user_id = ?
+      ORDER BY date ASC`,
+      [id]);
+    return result as IConversation[];
+  }
+
+  async deleteById(id: number): Promise<void> {
+    await this.connection.execute(
+      `DELETE FROM chatbot.Conversations
+      WHERE id = ?`,
+      [id]);
+  }
 }
 
 export default ConversationModel;

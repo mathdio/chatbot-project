@@ -1,0 +1,11 @@
+data:text/csv;charset=utf-8,user,message,date
+customer,good,,2023-07-17 20:24:25
+bot,Send your username to continue,2023-07-17 20:24:25
+customer,joaosilva,2023-07-17 20:24:28
+bot,Now send your password,2023-07-17 20:24:28
+customer,123456,2023-07-17 20:24:32
+bot,All right, João Silva! How can we help you?,2023-07-17 20:24:32
+customer,loan,2023-07-17 20:24:34
+bot,Are you seeking some info about loans? Here some options that can help you.,2023-07-17 20:24:34
+bot,Loans Terms: Specific Terms Defined & How to Negotiate Them Loan terms refer to the terms and conditions involved when borrowing money. This can include the loan’s repayment period, the interest rate and fees associated with the loan, penalty fees borrowers might be charged, and any other special conditions that may apply. https://www.investopedia.com/loan-terms-5075341#:~:text=Loan%20terms%20refer%20to%20the,special%20conditions%20that%20may%20apply.,
+customer,goodbye,2023-07-17 20:24:39

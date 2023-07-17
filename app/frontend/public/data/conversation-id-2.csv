@@ -1,0 +1,11 @@
+data:text/csv;charset=utf-8,user,message,date
+customer,good,,2023-07-17 20:24:57
+bot,Send your username to continue,2023-07-17 20:24:57
+customer,joaosilva,2023-07-17 20:24:59
+bot,Now send your password,2023-07-17 20:24:59
+customer,123456,2023-07-17 20:25:01
+bot,All right, João Silva! How can we help you?,2023-07-17 20:25:01
+customer,loan,2023-07-17 20:25:10
+bot,Are you seeking some info about loans? Here some options that can help you.,2023-07-17 20:25:10
+bot,The top 9 reasons for personal loans If you need cash, a personal loan may be a good option. Personal loans are borrowed money that can be used for large purchases, debt consolidation, emergency expenses and much more. These loans are paid back in monthly installments over the course of a few months or upwards of a few years. https://www.bankrate.com/loans/personal-loans/top-reasons-to-apply-for-personal-loan/,
+customer,goodbye,2023-07-17 20:25:14

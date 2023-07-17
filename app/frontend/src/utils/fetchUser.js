@@ -17,8 +17,8 @@ const fetchUser = async (username, password, setName, setId) => {
     setName(null)
   } else {
     const data = await response.json();
-    setName(data.name)
-    setId(data.id)
+    setId(data.id);
+    setName(data.name);
   }
 } 
 

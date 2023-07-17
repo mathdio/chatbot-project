@@ -16,6 +16,15 @@ class ConversationService {
     const conversations = await this.model.findAll();
     return conversations 
   }
+
+  async findById(id: number): Promise<IConversation[] | null> {
+    const conversations = await this.model.findById(id);
+    return conversations 
+  }
+
+  async deleteById(id: number): Promise<void> {
+    await this.model.deleteById(id);
+  }
 }
 
 export default ConversationService;
