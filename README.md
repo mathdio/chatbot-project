@@ -1,6 +1,11 @@
 # Chatbot project
 A chatbot-mobile-like web application.
 ## 💻 About this project
+The applicaiton has two pages: chatbot page and history page. The last one will only load if the user log in by passing parameters in chatbot page. Both pages has a header, wich has 3 elements:
+
+- the name of page accompanied by a circle icon, in the left side of the header;
+- a button the will redirect to the other page, in the center of the header;
+- a button to log out, in the right side of the header.
 
 ## 🏁 Getting started
 ### 🐳 Installing Docker and Docker Compose
