@@ -7,6 +7,12 @@ The applicaiton has two pages: chatbot page and history page. The last one will 
 - a button the will redirect to the other page, in the center of the header;
 - a button to log out, in the right side of the header.
 
+The chatbot page has a footer with an input and a button to type and send messages. To trigger a conversation with the bot, the user must send a message with one of the following terms: "Hello,", "Good,", "I want,". 
+
+After that, the bot will require an username and a password. Upping the back-end will seed the database with an user that can be used to test the applicaiton. Username in database is `joaosilva` e password is `123456`.
+
+Thenceforth, the user can continue to send messages to bot. If some message has the term "loan", the bot will answer displaying three options that can be selected to show info and a reference link.
+
 ## 🏁 Getting started
 ### 🐳 Installing Docker and Docker Compose
 As the project is containerized, to run the application you will need to install both softwares. The Docker Compose version used in this project is 2.5. 
