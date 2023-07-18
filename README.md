@@ -1,6 +1,5 @@
 # Chatbot project
-A chatbot application developed as a selection process' technical test.
-
+A chatbot-mobile-like web application.
 ## 💻 About this project
 
 ## 🏁 Getting started
