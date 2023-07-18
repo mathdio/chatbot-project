@@ -13,6 +13,10 @@ After that, the bot will require an username and a password. Upping the back-end
 
 Thenceforth, the user can continue to send messages to bot. If some message has the term "loan", the bot will answer displaying three options that can be selected to show info and a reference link.
 
+Sending a message with the term "goodbye", the conversation will be finished and saved in database as a CSV file.
+
+After log in by sending valid username and password in chatbot, the user can access history page to be able to download the past conversations. All conversations of the user will be shown in a table, in wich each conversation will have the date and time and a download button.
+
 ## 🏁 Getting started
 ### 🐳 Installing Docker and Docker Compose
 As the project is containerized, to run the application you will need to install both softwares. The Docker Compose version used in this project is 2.5. 
