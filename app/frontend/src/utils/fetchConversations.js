@@ -14,6 +14,6 @@ const fetchConversations = async (id, setConversations) => {
 
   const data = await response.json();
   setConversations(data);
-}
+};
 
 export default fetchConversations;

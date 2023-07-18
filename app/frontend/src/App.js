@@ -2,7 +2,7 @@ import './App.css';
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Chatbot from './pages/Chatbot';
-import History from './pages/History'
+import History from './pages/History';
 
 
 function App() {

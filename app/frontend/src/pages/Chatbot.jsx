@@ -23,23 +23,23 @@ function Chatbot() {
     const heading = ['user', 'message', 'date'];
     const convertInRows = chat.map((response) => {
       if (response.link) {
-        return [response.user, `${response.message} ${response.info} ${response.link}`, response.date]
+        return [response.user, `${response.message} ${response.info} ${response.link}`, response.date];
       } else {
-        return [response.user, response.message, response.date]
+        return [response.user, response.message, response.date];
       }
-    })
+    });
 
     convertInRows.splice(0,0, heading);
-    let csvContent = "data:text/csv;charset=utf-8,";
+    let csvContent = 'data:text/csv;charset=utf-8,';
     convertInRows.forEach((rowArray) => {
-      const row = rowArray.join(",")
-      csvContent += row + '\r\n'
+      const row = rowArray.join(',');
+      csvContent += row + '\r\n';
     });
 
     const date = chat[chat.length - 1].date;
 
     await fetch(
-      `http://localhost:3001/conversations/`,
+      'http://localhost:3001/conversations/',
       {
         method: 'POST',
         body: JSON.stringify({csvContent, id, date}),
@@ -51,7 +51,7 @@ function Chatbot() {
         }
       },
     );
-  }
+  };
 
   const handleStart = () => {
     const lastResponse = chat[chat.length - 1];
@@ -74,7 +74,7 @@ function Chatbot() {
       setSentUser(true);
       const response = {
         user: 'bot',
-        message: `Now send your password`,
+        message: 'Now send your password',
         date: new Date().toISOString().slice(0, 19).replace('T', ' '),
       };
       setChat([...chat, response]);
@@ -83,8 +83,8 @@ function Chatbot() {
 
   useEffect(() => {
     if (name && name.length > 0) {
-      localStorage.setItem('user', JSON.stringify({id, name}))
-      setSentPassword(true)
+      localStorage.setItem('user', JSON.stringify({id, name}));
+      setSentPassword(true);
       const response = {
         user: 'bot',
         message: `All right, ${name}! How can we help you?`,
@@ -95,7 +95,7 @@ function Chatbot() {
       setSentUser(false);
       const response = {
         user: 'bot',
-        message: `Username or passwords invalids. Try again.`,
+        message: 'Username or passwords invalids. Try again.',
         date: new Date().toISOString().slice(0, 19).replace('T', ' '),
       };
       setChat([...chat, response]);
@@ -133,7 +133,7 @@ function Chatbot() {
         convertCsv();
       }
     }
-  }
+  };
   
   const ref = useRef(null);
 

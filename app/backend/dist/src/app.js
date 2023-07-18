@@ -4,9 +4,17 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
+require('express-async-errors');
 const ErrorHandler_1 = __importDefault(require("./middlewares/ErrorHandler"));
+const UserRouter_1 = __importDefault(require("./routes/UserRouter"));
+const ConversationRouter_1 = __importDefault(require("./routes/ConversationRouter"));
+const cors = require('cors');
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
+app.use(cors());
+app.use(express_1.default.static('data'));
 app.get('/health', (_req, res) => res.status(200).send({ message: 'API is up!' }));
+app.use('/users', UserRouter_1.default);
+app.use('/conversations', ConversationRouter_1.default);
 app.use(ErrorHandler_1.default);
 exports.default = app;
