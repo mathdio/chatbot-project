@@ -160,6 +160,10 @@ function Chatbot() {
     ref.current?.scrollIntoView({behavior: 'smooth'});
   }, [chat]);
 
+  useEffect(() => {
+    document.title = 'Chatbot Service';
+  }, []);
+
   return (
     <div className={styles['main-container']}>
       <Header headerLink='History' pageName='Chatbot' />

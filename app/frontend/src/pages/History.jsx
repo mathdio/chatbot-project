@@ -16,6 +16,8 @@ function History() {
   }, [user]);
 
   useEffect(() => {
+    document.title = 'History';
+
     if (localStorage.getItem('user')) {
       setUser(JSON.parse(localStorage.getItem('user')));
     } else {
