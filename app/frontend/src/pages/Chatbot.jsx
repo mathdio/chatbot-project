@@ -6,6 +6,8 @@ import loadingIcon from '../images/loading-icon.jpg';
 import LoanOptions from '../components/LoanOptions';
 import fetchUser from '../utils/fetchUser';
 
+const HOST = process.env.REACT_APP_API_HOST || 'localhost:3001';
+const PROTOCOL = process.env.REACT_APP_API_PROTOCOL || 'http';
 const startTriggers = ['Hello,', 'Good,', 'I want'];
 
 function Chatbot() {
@@ -39,7 +41,7 @@ function Chatbot() {
     const date = chat[chat.length - 1].date;
 
     await fetch(
-      'http://localhost:3001/conversations/',
+      `${PROTOCOL}://${HOST}/conversations`,
       {
         method: 'POST',
         body: JSON.stringify({csvContent, id, date}),
