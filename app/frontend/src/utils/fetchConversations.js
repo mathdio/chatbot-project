@@ -1,6 +1,9 @@
+const HOST = process.env.REACT_APP_API_HOST || 'localhost:3001';
+const PROTOCOL = process.env.REACT_APP_API_PROTOCOL || 'http';
+
 const fetchConversations = async (id, setConversations) => {
   const response = await fetch(
-    `http://localhost:3001/conversations/${id}`,
+    `${PROTOCOL}://${HOST}/conversations/${id}`,
     {
       method: 'GET',
       headers: {

@@ -1,6 +1,9 @@
+const HOST = process.env.REACT_APP_API_HOST || 'localhost:3001';
+const PROTOCOL = process.env.REACT_APP_API_PROTOCOL || 'http';
+
 const fetchUser = async (username, password, setName, setId) => {
   const response = await fetch(
-    'http://localhost:3001/users/fetch-username',
+    `${PROTOCOL}://${HOST}/users/fetch-username`,
     {
       method: 'POST',
       body: JSON.stringify({username, password}),
