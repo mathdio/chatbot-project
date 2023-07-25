@@ -25,6 +25,11 @@ class ConversationService {
   async deleteById(id: number): Promise<void> {
     await this.model.deleteById(id);
   }
+
+  async findOne(id: number): Promise<IConversation[] | null> {
+    const url = await this.model.findOne(id);
+    return url
+  }
 }
 
 export default ConversationService;

@@ -37,7 +37,7 @@ function History() {
           </tr>
         </thead>
         <tbody>
-          {conversations.map(({date, url}, index) => {
+          {conversations.map(({date, url, id}, index) => {
             const convertedDate = date.split('T')[0].split('-').reverse().join('/');
             const time = date.split('T')[1].split('.')[0];
             return (
@@ -49,7 +49,7 @@ function History() {
                   {`${convertedDate} ${time}`}
                 </td>
                 <td>
-                  <a href={url.slice(19)} download={`${url.split('/')[4]}`}>
+                  <a href={`http://localhost:3001/conversations/get/${id}`} download={`${url.split('/')[4]}`}>
                       Download
                   </a>
                 </td>

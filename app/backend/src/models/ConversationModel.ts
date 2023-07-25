@@ -19,7 +19,7 @@ class ConversationModel {
 
   async findById(id: number): Promise<IConversation[] | null> {
     const [result] = await this.connection.execute<RowDataPacket[]>(
-      `SELECT url, date FROM chatbot.Conversations
+      `SELECT url, date, id FROM chatbot.Conversations
       WHERE user_id = ?
       ORDER BY date ASC`,
       [id]);
@@ -31,6 +31,14 @@ class ConversationModel {
       `DELETE FROM chatbot.Conversations
       WHERE id = ?`,
       [id]);
+  }
+
+  async findOne(id: number): Promise<IConversation[] | null> {
+    const [url] = await this.connection.execute<RowDataPacket[]>(
+      `SELECT url FROM chatbot.Conversations
+      WHERE id = ?`,
+      [id]);
+    return url as IConversation[]
   }
 }
 

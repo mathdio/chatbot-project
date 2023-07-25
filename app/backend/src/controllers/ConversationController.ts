@@ -10,7 +10,7 @@ async function create(req: Request, res: Response, next: NextFunction) {
     const conversations = await conversationService.findAll();
     let fileName;
     if (conversations) {
-      fileName = `../frontend/public/data/conversation-id-${conversations.length + 1}.csv`
+      fileName = `./src/data/conversation-id-${conversations.length + 1}.csv`
       await fs.writeFile(fileName, csvContent);
       const conversation = {
         user_id: id,
@@ -50,4 +50,19 @@ async function deleteById(req: Request, res: Response, next: NextFunction) {
   }
 }
 
-export { create, findById, deleteById }
+async function findOne(req: Request, res: Response, next: NextFunction) {
+  const id = Number(req.params.id)
+  const conversationService = new ConversationService();
+
+  try {
+    const url = await conversationService.findOne(id);
+    if (url) {
+      const file = await fs.readFile(url[0].url, 'utf8');
+      return res.status(201).json('file')
+    }
+  } catch (err) {
+    next(err)
+  }
+}
+
+export { create, findById, deleteById, findOne }

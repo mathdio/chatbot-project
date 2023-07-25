@@ -1,0 +1,8 @@
+data:text/csv;charset=utf-8,user,message,date
+customer,good,,2023-07-19 20:25:49
+bot,Send your username to continue,2023-07-19 20:25:49
+customer,joaosilva,2023-07-19 20:25:51
+bot,Now send your password,2023-07-19 20:25:51
+customer,123456,2023-07-19 20:25:53
+bot,All right, João Silva! How can we help you?,2023-07-19 20:25:53
+customer,goodbye,2023-07-19 20:25:55
