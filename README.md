@@ -68,11 +68,7 @@ In a terminal, run:
 ```
 docker exec -it chatbot-backend sh
 ```
-Inside the container, run the following command:
-```
-cd app && cd backend
-```
-Install the dependencies by running:
+Inside the container, install the dependencies running the following command in `./app/backend` folder:
 ```
 npm install
 ```
