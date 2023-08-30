@@ -1,31 +1,25 @@
 version: '3.9'
 services:
-  frontend:
-    build: ./app/frontend
-    container_name: chatbot-frontend
+  app:
+    build: ./
+    container_name: chatbot-app
     ports:
       - 3000:3000
+      - 3001:3001
     platform: linux/x86_64
     volumes:
+      - ./app/backend:/app/backend
       - ./app/frontend:/app/frontend
-    working_dir: /app-frontend
+    working_dir: /app
+    env_file:
+      - .env
+    tty: true
+    stdin_open: true
+    command: sh
     healthcheck:
       test: ["CMD", "lsof", "-t", "-i:3000"]
       timeout: 10s
       retries: 5
-  
-  backend:
-    build: ./app/backend
-    container_name: chatbot-backend
-    tty: true
-    stdin_open: true
-    command: sh
-    volumes:
-      - ./app/backend:/app/backend
-    ports:
-      - 3001:3001
-    env_file:
-      - .env
     depends_on:
       - db
 
