@@ -10,7 +10,7 @@ async function create(req: Request, res: Response, next: NextFunction) {
     const conversations = await conversationService.findAll();
     let fileName;
     if (conversations) {
-      fileName = `./src/data/conversation-id-${conversations.length + 1}.csv`
+      fileName = `../frontend/public/data/conversation-id-${conversations.length + 1}.csv`
       await fs.writeFile(fileName, csvContent);
       const conversation = {
         user_id: id,

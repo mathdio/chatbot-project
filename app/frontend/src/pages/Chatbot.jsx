@@ -30,12 +30,11 @@ function Chatbot() {
     });
 
     convertInRows.splice(0,0, heading);
-    let csvContent = 'data:text/csv;charset=utf-8,';
+    let csvContent = '';
     convertInRows.forEach((rowArray) => {
-      const row = rowArray.join(',');
+      const row = rowArray.join(';');
       csvContent += row + '\r\n';
     });
-
     const date = chat[chat.length - 1].date;
 
     const HOST = process.env.REACT_APP_API_HOST || 'localhost:3001';
