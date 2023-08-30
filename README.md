@@ -62,40 +62,11 @@ npm run compose:down
 ```
 
 ### 🏃‍♀️ Running the application
-Creating the containers must start them automatically.
+Creating the containers must start them and start front-end layer automatically.
 #### Starting back-end layer
 In a terminal, run:
 ```
-docker exec -it chatbot-app sh
-```
-Inside the container, enter backend folder by running:
-```
-cd backend
-```
-Install the dependencies running the following command in chatbot-app container `./app/backend` folder:
-```
-npm install
-```
-Start the server by running:
-```
-npm run dev
-```
-#### Starting front-end layer
-In another terminal, run:
-```
-docker exec -it chatbot-app sh
-```
-Inside the container, enter frontend folder by running:
-```
-cd frontend
-```
-Install the dependencies running the following command in chatbot-app container `./app/frontend` folder:
-```
-npm install
-```
-Start the application by running:
-```
-npm start
+docker exec -it chatbot-app sh backend.sh
 ```
 Now you can access the application in a web browser throught the following URL:
 ```
