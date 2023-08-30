@@ -66,9 +66,13 @@ Creating the containers must start them automatically.
 #### Starting back-end layer
 In a terminal, run:
 ```
-docker exec -it chatbot-backend sh
+docker exec -it chatbot-app sh
 ```
-Inside the container, install the dependencies running the following command in `./app/backend` folder:
+Inside the container, enter backend folder by running:
+```
+cd backend
+```
+Install the dependencies running the following command in chatbot-app container `./app/backend` folder:
 ```
 npm install
 ```
@@ -76,9 +80,24 @@ Start the server by running:
 ```
 npm run dev
 ```
-With back-end running, you can access the application in a web browser throught the following URL:
+#### Starting front-end layer
+In another terminal, run:
+```
+docker exec -it chatbot-app sh
+```
+Inside the container, enter frontend folder by running:
+```
+cd frontend
+```
+Install the dependencies running the following command in chatbot-app container `./app/frontend` folder:
+```
+npm install
+```
+Start the application by running:
+```
+npm start
+```
+Now you can access the application in a web browser throught the following URL:
 ```
 http://localhost:3000/chatbot
 ```
-
-You can alternatively stop front-end and back-end containers and starting each layer by installing the dependencies with `npm install` command in project root, front-end directory and back-end directory. Run the command `npm start` to start the front-end and run `npm run dev` to start the back-end. 
