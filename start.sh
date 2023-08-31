@@ -6,5 +6,5 @@ cd app
 # Change directory to "frontend"
 cd frontend
 
-# Run the "npm run start" command
-npm run start
+# Run the "npm run build" command
+npm run build
