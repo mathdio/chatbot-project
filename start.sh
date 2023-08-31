@@ -1,10 +1,10 @@
 #!/bin/bash
 
-# List all files and folders in the current directory
-ls
+# Change directory to "app"
+cd app
 
 # Change directory to "frontend"
-cd frontend || exit 1
+cd frontend
 
 # Run the "npm run start" command
 npm run start
